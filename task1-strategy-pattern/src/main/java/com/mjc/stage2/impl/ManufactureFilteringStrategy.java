@@ -1,11 +1,21 @@
 package com.mjc.stage2.impl;
 
 
+import com.mjc.stage2.FilteringStrategy;
+import com.mjc.stage2.Product;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class ManufactureFilteringStrategy {
-    private String manufacture;
+public class ManufactureFilteringStrategy implements FilteringStrategy {
+    private final String manufacture;
 
-    // Write your code here!
+    @Override
+    public boolean filter(Product product) {
+        if (manufacture == null) {
+            return true;
+        }
+
+        return product.getManufacture().equalsIgnoreCase(manufacture);
+    }
+
 }
